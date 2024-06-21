@@ -81,10 +81,10 @@ def train(model, train_loader, optimizer, num_epochs=100):
         t1 = time.time()
         dt = (t1 - t0) * 1000  # time difference is in milliseconds
         tokens_per_sec = (train_loader.B * train_loader.T) / (t1 - t0)
-        if (i + 1) % 10 == 0:
-            print(f'step {i + 1}, loss: {loss.item()}, dt: {dt:.2f} ms, tok/sec {tokens_per_sec}')
+        
+        print(f'step {i + 1}, loss: {loss.item()}, dt: {dt:.2f} ms, tok/sec {tokens_per_sec}')
 
-train(model, train_loader, optimizer, num_epochs=100)
+train(model, train_loader, optimizer, num_epochs=50)
 
 
 def save_model(model, path):
