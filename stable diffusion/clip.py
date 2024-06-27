@@ -8,6 +8,7 @@ class CLIPEmbedding(nn.Module):
         super().__init__()
         
         self.token_embedding = nn.Embedding(n_vocab, n_embd)
+        # A learnable weight matrix encodes the position information for each token
         self.position_embedding = nn.Parameter(torch.zeros((n_token, n_embd)))
     
     def forward(self, tokens):
@@ -21,20 +22,30 @@ class CLIPEmbedding(nn.Module):
 class CLIPLayer(nn.Module):
     def __init__(self, n_head: int, n_embd: int):
         super().__init__()
+        
+        # Pre-attention norm
         self.layernorm_1 = nn.LayerNorm(n_embd)
+        # Self attention
         self.attention = SelfAttention(n_head, n_embd)
+        # Pre-FNN norm
         self.layernorm_2 = nn.LayerNorm(n_embd)
+        # Feedforward layer
         self.linear_1 = nn.Linear(n_embd, 4 * n_embd)
         self.linear_2 = nn.Linear(4 * n_embd, n_embd)
 
     def forward(self, x):
-   
+        # (Batch_Size, Seq_Len, Dim)
         residue = x
+        
+        ### SELF ATTENTION ###
+
+        # (Batch_Size, Seq_Len, Dim) -> (Batch_Size, Seq_Len, Dim)
         x = self.layernorm_1(x)
         
         # (Batch_Size, Seq_Len, Dim) -> (Batch_Size, Seq_Len, Dim)
         x = self.attention(x, causal_mask=True)
-
+        
+        # (Batch_Size, Seq_Len, Dim) + (Batch_Size, Seq_Len, Dim) -> (Batch_Size, Seq_Len, Dim)
         x += residue
 
         ### FEEDFORWARD LAYER ###
