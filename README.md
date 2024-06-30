@@ -9,11 +9,9 @@ Welcome to the StoryForge project! This project showcases a cutting-edge Text-to
 
 - [Introduction](#introduction)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Models](#models)
   - [Stable Diffusion](#stable-diffusion)
   - [Stable Video diffusion](#stable-video-diffusion)
-- [Examples](#examples)
 - [Contributors](#contributors)
 - [Contributing](#contributing)
 - [License](#license)
@@ -41,7 +39,8 @@ To get started, follow these steps to set up the project:
    ```bash
    pip install -r requirement.txt
 
-## Usage
+ 4. Model weights are available on Google drive:
+https://drive.google.com/drive/folders/1k3vvyncTzvh47j39fzwbioZPZRuQl8w6?usp=sharing
 
 ## Models
 
@@ -50,8 +49,6 @@ Stable Diffusion is a deep learning model released by Stability.ai that generate
 
 # Stable Video diffusion
 Stable Video Diffusion (SVD) Image-to-Video is a diffusion model that takes in a still image as a conditioning frame, and generates a video from it.
-
-## Examples
 
 ## Contributors
 Parikshit Gehlaut   
