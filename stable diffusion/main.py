@@ -20,24 +20,23 @@ models = model_loader.preload_models_from_standard_weights(model_file, DEVICE)
 
 ## TEXT TO IMAGE
 
-# prompt = "A dog with sunglasses, wearing comfy hat, looking at camera, highly detailed, ultra sharp, cinematic, 100mm lens, 8k resolution."
-prompt = "A woman in a traditional Japanese kimono standing under cherry blossom trees, highly detailed, ultra sharp, cinematic, 100mm lens, 8k resolution."
-uncond_prompt = ""  # Also known as negative prompt
+prompt = "Epic anime artwork of a wizard atop a mountain at night casting a cosmic spell into the dark sky made out of colorful energy, highly detailed, ultra sharp, cinematic, 100mm lens, 8k resolution."
+uncond_prompt = "low detail, blurry, non-cinematic, low resolution, poorly lit, out of focus, low quality"  # Also known as negative prompt
 do_cfg = True
 cfg_scale = 8  # min: 1, max: 14
 
 ## IMAGE TO IMAGE
 input_image = None
-# Comment to disable image to image
-# image_path = "../images/dog.jpg"
-# input_image = Image.open(image_path)
+
+image_path = "../images/i2.png"
+input_image = Image.open(image_path)
 # Higher values means more noise will be added to the input image, so the result will further from the input image.
 # Lower values means less noise is added to the input image, so output will be closer to the input image.
 strength = 0.9
 
 ## SAMPLER
 sampler = "ddpm"
-num_inference_steps = 30
+num_inference_steps = 40
 seed = 42
 
 output_image = pipeline.generate(
